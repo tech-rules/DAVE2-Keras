@@ -2,7 +2,13 @@
 Nvidia's paper
 Comma.ai architecture
 Combining them
+Udacity data
+Data analysis and preprocessing
 Data augmentation
-Track 1 
-Track 2
+Keras Image preprocessor and generator
+fit_generator
+normalization layer
+diagram of architecture : nvidia's and tensorboard
+Track 1 result
+Track 2 result
 
