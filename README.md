@@ -1,2 +1,8 @@
 # DAVE2-Keras
-Implementation of Nvidia's DAVE2 NN in Keras, with some enhancements
+Nvidia's paper
+Comma.ai architecture
+Combining them
+Data augmentation
+Track 1 
+Track 2
+
