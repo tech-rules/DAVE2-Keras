@@ -16,7 +16,8 @@ NVidia GTX1080 (8GB VRAM). Intel Core i7 (32GB DRAM). Ubuntu 16.04. CUDA version
   Optimizer choice. Learning Rate choice.
   Description of my layers. number of parameters. keras model.info().
   My diagram (tensorboard or draw.io)
-```pythonfrom keras.models import Sequential
+```python
+from keras.models import Sequential
 from keras.layers import Convolution2D, MaxPooling2D, Dense, Dropout, Activation, Flatten, Lambda, Input, ELU
 from keras.optimizers import SGD, Adam, RMSprop
 from keras.utils import np_utils
