@@ -17,11 +17,6 @@ NVidia GTX1080 (8GB VRAM). Intel Core i7 (32GB DRAM). Ubuntu 16.04. CUDA version
   Description of my layers. number of parameters. keras model.info().
   My diagram (tensorboard or draw.io)
 ```python
-from keras.models import Sequential
-from keras.layers import Convolution2D, MaxPooling2D, Dense, Dropout, Activation, Flatten, Lambda, Input, ELU
-from keras.optimizers import SGD, Adam, RMSprop
-from keras.utils import np_utils
-
 input_shape = (66, 200, 3)
 model = Sequential()
 # Input normalization layer
