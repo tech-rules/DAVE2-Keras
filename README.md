@@ -16,6 +16,51 @@ NVidia GTX1080 (8GB VRAM). Intel Core i7 (32GB DRAM). Ubuntu 16.04. CUDA version
   Optimizer choice. Learning Rate choice.
   Description of my layers. number of parameters. keras model.info().
   My diagram (tensorboard or draw.io)
+```pythonfrom keras.models import Sequential
+from keras.layers import Convolution2D, MaxPooling2D, Dense, Dropout, Activation, Flatten, Lambda, Input, ELU
+from keras.optimizers import SGD, Adam, RMSprop
+from keras.utils import np_utils
+
+input_shape = (66, 200, 3)
+model = Sequential()
+# Input normalization layer
+model.add(Lambda(lambda x: x/127.5 - 1., input_shape=input_shape, name='lambda_norm'))
+
+# 5x5 Convolutional layers with stride of 2x2
+model.add(Convolution2D(24, 5, 5, subsample=(2, 2), border_mode="valid", name='conv1'))
+model.add(ELU(name='elu1'))
+model.add(Convolution2D(36, 5, 5, subsample=(2, 2), border_mode="valid", name='conv2'))
+model.add(ELU(name='elu2'))
+model.add(Convolution2D(48, 5, 5, subsample=(2, 2), border_mode="valid", name='conv3'))
+model.add(ELU(name='elu3'))
+
+# 3x3 Convolutional layers with stride of 1x1
+model.add(Convolution2D(64, 3, 3, subsample=(1, 1), border_mode="valid", name='conv4'))
+model.add(ELU(name='elu4'))
+model.add(Convolution2D(64, 3, 3, subsample=(1, 1), border_mode="valid", name='conv5'))
+model.add(ELU(name='elu5'))
+
+# Flatten before passing to Fully Connected layers
+model.add(Flatten())
+# Three fully connected layers
+model.add(Dense(100, name='fc1'))
+model.add(Dropout(.5, name='do1'))
+model.add(ELU(name='elu6'))
+model.add(Dense(50, name='fc2'))
+model.add(Dropout(.5, name='do2'))
+model.add(ELU(name='elu7'))
+model.add(Dense(10, name='fc3'))
+model.add(Dropout(.5, name='do3'))
+model.add(ELU(name='elu8'))
+
+# Output layer with tanh activation 
+model.add(Dense(1, activation='tanh', name='output'))
+
+adam = Adam(lr=1e-4, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0)
+model.compile(optimizer="adam", loss="mse")
+
+```
+
 ```
 Layer (type)                     Output Shape          Param #     Connected to                     
 ====================================================================================================
@@ -68,6 +113,7 @@ Trainable params: 252,219
 Non-trainable params: 0
 ____________________________________________________________________________________________________
 ```
+[A picture of the model](model.png)
 
 ## Training Data Preparation:
   Udacity provided training data. Explain what was in the data. csv file, images. center, left, right image. histogram of steering angle (insert picture) showed that center had too many zeros. removed 75% zeros, in order to teach the NN more frequent and small sterring adjustments, similar to what we teach a new human driver. right and left camera images were used as a means to teach recovery and generate aditional data (similar to nvidia paper). CSV and pandas processing. (insert new histogram)
@@ -84,6 +130,7 @@ ________________________________________________________________________________
   Udacity provided track 1 data as training data. Self generated data on track 2 as validation data.
   Actual running on tracks as test.
   Analysis of training trial and error process.
+    
 ```
 Epoch 1/8
 18404/18404 [==============================] - 28s - loss: 0.0550 - val_loss: 0.0230
