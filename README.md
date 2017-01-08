@@ -32,6 +32,24 @@ NVidia GTX1080 (8GB VRAM). Intel Core i7 (32GB DRAM). Ubuntu 16.04. CUDA version
   Udacity provided track 1 data as training data. Self generated data on track 2 as validation data.
   Actual running on tracks as test.
   Analysis of training trial and error process.
+```
+Epoch 1/8
+18404/18404 [==============================] - 28s - loss: 0.0550 - val_loss: 0.0230
+Epoch 2/8
+18404/18404 [==============================] - 27s - loss: 0.0446 - val_loss: 0.0381
+Epoch 3/8
+18404/18404 [==============================] - 27s - loss: 0.0397 - val_loss: 0.0830
+Epoch 4/8
+18404/18404 [==============================] - 27s - loss: 0.0394 - val_loss: 0.0812
+Epoch 5/8
+18404/18404 [==============================] - 27s - loss: 0.0364 - val_loss: 0.0446
+Epoch 6/8
+18404/18404 [==============================] - 27s - loss: 0.0332 - val_loss: 0.0460
+Epoch 7/8
+18404/18404 [==============================] - 27s - loss: 0.0321 - val_loss: 0.0412
+Epoch 8/8
+18404/18404 [==============================] - 27s - loss: 0.0312 - val_loss: 0.0628
+```
 
 ## Test Results:
 Track 1 video link (can it be embedded in readme.md ?)
