@@ -1,8 +1,8 @@
 # DAVE2-Keras
 ## Goal: 
-This project was done as part of Udacity Self Driving Car Nanodegree. The goal of the project was to implement an end-to-end neural network, for behavioral cloning of a simulated car driver. The input to the network are three dashboard-mounted camera images (left, right , and center).  The output of the network is a single floating point number, representing the steering angle of the car (other car controls e.g. throttle and brake were assumed constant). A Unity engine based driving simulator was used for training and testing the network. This simulator was provided by Udacity. [Linux Driving Simulator](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f0f7_simulator-linux/simulator-linux.zip)
+The goal of this project was to implement an end-to-end neural network, for behavioral cloning of a simulated car driver. The input to the network are three dashboard-mounted camera images (left, right , and center).  The output of the network is a single floating point number, representing the steering angle of the car (other car controls e.g. throttle and brake were assumed constant). A Unity engine based driving simulator was used for training and testing the network. This simulator was provided by Udacity as part of the Self Driving Car nanodegree program. If you wish to try it out, you can download it from: [Download Linux Driving Simulator](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f0f7_simulator-linux/simulator-linux.zip)
 
-Track 1 and Track 2 generalization (sharper turns, uphill/downhill, more varying lighting conditions).
+Insert image. Track 1 and Track 2 generalization (sharper turns, uphill/downhill, more varying lighting conditions).
 
 ## Architecture Choices: 
 Regression problem. Previous published work of real world in Nvidia paper (link) and commai.ai research (link). Transfer learning + Fine-tuning using VGG-16 or Inception-v3 (much larger netowrks, meant for classification, less flexibility).
