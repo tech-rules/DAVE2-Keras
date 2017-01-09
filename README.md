@@ -11,7 +11,7 @@ Two of the previous work on similar end-to-end deep-learning self driving car ar
 1. [Nvidia's DAVE-2 system](https://arxiv.org/pdf/1604.07316v1.pdf)
 2. [Comma.ai's steering angle model](https://github.com/commaai/research)
 
-Anther choice that I considered was to use transfer learning (fine-tuning of final few layers) with a pre-trained image classification CNN (e.g. VGG-16 or Inception-v3). The purpose of these CNNs are quite different (Imagenet classification challenge), and their parameter space is much larger than the choices (1) or (2) above.
+Another choice considered was to use transfer learning (fine-tuning of final few layers) with a pre-trained image classification CNN (e.g. VGG-16 or Inception-v3). The purpose of these CNNs are quite different (Imagenet classification challenge), and their parameter space is much larger than the choices (1) or (2) above.
 
 ## System and SW used for this project: 
 * Ubuntu 16.04, Intel Core i7-6800K, 32GB System RAM
@@ -21,13 +21,15 @@ Anther choice that I considered was to use transfer learning (fine-tuning of fin
 * Misc. Python libraries (numpy, pandas, openCV etc.)
 
 ## Final Architecture:
-  Decided to use Nvidia architecture as a base, and customizing for problem at hand and picking some of the good ideas from Comma. Here is a diagram of Nvidia's DAVE-2 architecture from the above paper.
+  The final model was based upon DAVE-2 with a few modifications borrowed from Comma.ai's steering model. Here is the diagram of Nvidia's DAVE-2 CNN:
+![](images/dave2.png?raw=true)  
+
   Input normalization layer as in Nvidia. Its benefits. 
   Added Dropout layers to reduce overfitting. Why. (nvidia may have a lot more data trained for days)
   Used ELU instead of RELU. Why ? deemed better for regression problems (relus better for classification) inspired by comma.
   Optimizer choice. Learning Rate choice.
-  Description of my layers. number of parameters. keras model.info().
-  My diagram (tensorboard or draw.io)
+  
+  Below is the snippet of implementation in Keras, of the final model:
 ```python
 input_shape = (66, 200, 3)
 model = Sequential()
@@ -68,7 +70,7 @@ adam = Adam(lr=1e-4, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0)
 model.compile(optimizer="adam", loss="mse")
 
 ```
-
+Summary of the model as reported by Keras' model.summary():
 ```
 Layer (type)                     Output Shape          Param #     Connected to                     
 ====================================================================================================
