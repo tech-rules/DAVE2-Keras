@@ -1,5 +1,5 @@
 ## Goal: 
-The goal of this project was to implement an end-to-end neural network, for behavioral cloning of a simulated car driver. The input to the network are timestamped camera images (left, right , and center mounted).  The output of the network is a single floating point number, representing the steering angle of the car (other car controls e.g. throttle and brake were assumed constants). A Unity engine based driving simulator was used for training and testing the network. This simulator was provided by Udacity as part of the Self Driving Car nanodegree program. In case you want to try it out: [Link to download linux driving dimulator](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f0f7_simulator-linux/simulator-linux.zip)
+The goal of this project was to implement an end-to-end neural network, for behavioral cloning of a simulated car driver. The input to the network are timestamped camera images (left, right , and center mounted).  The output of the network is a single floating point number, representing the steering angle of the car (other car controls e.g. throttle and brake were assumed constants). A Unity engine based driving simulator was used for training and testing the network. This simulator was provided by Udacity as part of the Self Driving Car nanodegree program. In case you want to try it out: [Link to download the linux driving simulator.](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f0f7_simulator-linux/simulator-linux.zip)
 
 The simulator has two  different tracks. Track 1 was used for training and validation. The purpose of Track 2 is to make sure that the solution is generalized enough, and not overfitted to Track 1.
 
@@ -23,7 +23,7 @@ Another choice considered was to use transfer learning (fine-tuning of final few
 ## Final Architecture:
   The final model was based upon Nvidia's DAVE-2, with a few modifications borrowed from Comma.ai's steering model. Here is a diagram of Nvidia's DAVE-2 CNN:
   
-  ![](images/dave2.png?raw=true =250x)  
+  ![](images/dave2.png?raw=true =200x)  
 
   One drawback of this architecture is that it does not use any dropout layers. Dropout layers have proven very effective in reducing overfitting problem of deep neural networks. In my model, I have added dropout layers after each fully-connected layer. Another modification was to use ELU as activation function, instead of Relu, based upon Comma.ai's use of ELU.
   
@@ -122,7 +122,7 @@ Trainable params: 252,219
 Non-trainable params: 0
 ____________________________________________________________________________________________________
 ```
-[Link for data flow graph of the model](images/model.png)
+[Link to data flow graph of the model](images/model.png)
 
 ## Training Data Preparation:
   Udacity provided training data. Explain what was in the data. csv file, images. center, left, right image. histogram of steering angle (insert picture) showed that center had too many zeros. removed 75% zeros, in order to teach the NN more frequent and small sterring adjustments, similar to what we teach a new human driver. right and left camera images were used as a means to teach recovery and generate aditional data (similar to nvidia paper). CSV and pandas processing. (insert new histogram)
