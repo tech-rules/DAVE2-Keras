@@ -11,7 +11,7 @@ Two of the previous work on similar end-to-end deep-learning self driving car ar
 1. [Nvidia's DAVE-2 system](https://arxiv.org/pdf/1604.07316v1.pdf)
 2. [Comma.ai's steering angle model](https://github.com/commaai/research)
 
-Another choice considered was to use transfer learning (fine-tuning of final few layers) with a pre-trained image classification CNN (e.g. VGG-16 or Inception-v3). The purpose of these CNNs are quite different (Imagenet classification challenge), and they have an order of magnitude larger number of parameters than the choices (1) or (2) above.
+Another choice considered was to use transfer learning (fine-tuning of final few layers) with a pre-trained image classification CNN (e.g. VGG-16 or Inception-v3). The purpose of these CNNs are quite different (Imagenet classification challenge). These CNNs tend to have many more layers and an order of magnitude larger number of parameters than the choices (1) or (2) above which are designed to run real-time on resource constrained systems i.e. DrivePX and smart phones.
 
 ## System and SW used for this project: 
 * Ubuntu 16.04, Intel Core i7-6800K, 32GB System RAM
