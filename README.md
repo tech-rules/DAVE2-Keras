@@ -69,7 +69,7 @@ adam = Adam(lr=1e-4, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0)
 model.compile(optimizer="adam", loss="mse")
 
 ```
-Summary of the model as reported by Keras' model.summary():
+Summary of the model as reported by Keras' `model.summary()`:
 ```
 Layer (type)                     Output Shape          Param #     Connected to                     
 ====================================================================================================
