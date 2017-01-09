@@ -25,7 +25,7 @@ Another choice considered was to use transfer learning (fine-tuning of final few
   
   ![](images/dave2.png?raw=true =200x)  
 
-  Number and type of convolutional and fully connected layers were borrowed exactly as above. One drawback of this architecture is that it does not use any dropout layers. Dropout layers have proven very effective in reducing overfitting problem of deep neural networks. In my model, I have added dropout layers after each fully-connected layer. Another modification was to use ELU as activation function, instead of Relu, based upon Comma.ai's use of ELU. Finally, a tanh activation was used at the output neuron to keep the steering angle prediction within the range of -1 to +1.
+  Number and type of convolutional and fully connected layers were borrowed exactly as above (including the in-line normalization layer as Keras' Lambda layer). One drawback of this architecture is that it does not use any dropout layers. Dropout layers have proven very effective in reducing overfitting problem of deep neural networks. In my model, I have added dropout layers after each fully-connected layer. Another modification was to use ELU as activation function, instead of Relu, based upon Comma.ai's use of ELU. Finally, a tanh activation was used at the output neuron to keep the steering angle prediction within the range of -1 to +1.
   
   Adam optimizer was used with a learning rate of 1e-4, based upon my previous experience of traffic sign classifier. MSE was used for the single float32 output. Below is a code-snippet of the implementation of the final model:
   
