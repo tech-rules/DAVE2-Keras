@@ -3,7 +3,7 @@ The goal of this project was to implement an end-to-end neural network, for beha
 
 The simulator has two  different tracks. Track 1 was used for training and validation. The purpose of Track 2 is to make sure that the solution is generalized enough, and not overfitted to Track 1.
 
-![](images/simulator.png?raw=true)
+![](images/tracks.png?raw=true)
 
 ## Architecture Choices: 
 Two of the previous work on similar end-to-end deep-learning self driving car are:
