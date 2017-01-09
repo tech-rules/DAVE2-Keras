@@ -126,8 +126,8 @@ ________________________________________________________________________________
 
 ## Training Data Preparation:
   Udacity provided training data. Expert driver. Explain what was in the data. csv file, images. center, left, right image. histogram of steering angle (insert picture) 
-  
-    ![](images/steering_hist.png?raw=true =200x)  
+
+![](images/steering_hist.png?raw=true)  
   
   showed that center had too many zeros. removed 75% zeros, in order to teach the NN more frequent and small sterring adjustments, similar to what we teach a new human driver. right and left camera images were used as a means to teach recovery and generate aditional data (similar to nvidia paper). CSV and pandas processing. (insert new histogram)
   
