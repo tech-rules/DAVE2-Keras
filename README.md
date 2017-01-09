@@ -125,7 +125,7 @@ ________________________________________________________________________________
 [Link to data flow graph of the model](images/model.png)
 
 ## Training Data Preparation:
-  Udacity provided training data. Explain what was in the data. csv file, images. center, left, right image. histogram of steering angle (insert picture) showed that center had too many zeros. removed 75% zeros, in order to teach the NN more frequent and small sterring adjustments, similar to what we teach a new human driver. right and left camera images were used as a means to teach recovery and generate aditional data (similar to nvidia paper). CSV and pandas processing. (insert new histogram)
+  Udacity provided training data. Expert driver. Explain what was in the data. csv file, images. center, left, right image. histogram of steering angle (insert picture) showed that center had too many zeros. removed 75% zeros, in order to teach the NN more frequent and small sterring adjustments, similar to what we teach a new human driver. right and left camera images were used as a means to teach recovery and generate aditional data (similar to nvidia paper). CSV and pandas processing. (insert new histogram)
   
   Decision to augment data for reducing overfitting and be able handle different kind of tracks. 
   Benefits of using generator for data augmentation. 
