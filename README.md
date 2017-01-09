@@ -21,8 +21,9 @@ Another choice considered was to use transfer learning (fine-tuning of final few
 * Misc. Python libraries (numpy, pandas, openCV etc.)
 
 ## Final Architecture:
-  The final model was based upon DAVE-2 with a few modifications borrowed from Comma.ai's steering model. Here is the diagram of Nvidia's DAVE-2 CNN:
-![](images/dave2.png?raw=true)  
+  The final model was based upon DAVE-2 with a few modifications borrowed from Comma.ai's steering model. Here is a diagram of Nvidia's DAVE-2 CNN:
+  
+  ![](images/dave2.png?raw=true =250x)  
 
   Input normalization layer as in Nvidia. Its benefits. 
   Added Dropout layers to reduce overfitting. Why. (nvidia may have a lot more data trained for days)
@@ -30,6 +31,7 @@ Another choice considered was to use transfer learning (fine-tuning of final few
   Optimizer choice. Learning Rate choice.
   
   Below is the snippet of implementation in Keras, of the final model:
+  
 ```python
 input_shape = (66, 200, 3)
 model = Sequential()
