@@ -11,10 +11,19 @@ Two of the previous work on similar end-to-end deep-learning self driving car ar
 
 1. [Nvidia's DAVE-2 system](https://arxiv.org/pdf/1604.07316v1.pdf)
 2. [Comma.ai's steering angle model](https://github.com/commaai/research)
+
 Anther choice that I considered was to use transfer learning (fine-tuning of final few layers) with a pre-trained image classification CNN (e.g. VGG-16 or Inception-v3). The purpose of these CNNs are quite different (Imagenet classification challenge), and their parameter space is much larger than the choices (1) or (2) above.
 
-## System and SW details: 
-NVidia GTX1080 (8GB VRAM). Intel Core i7 (32GB DRAM). Ubuntu 16.04. CUDA version. CuDNN version. Keras with Tensorflow backend. Misc. Python libraries (OpenCV, pandas, numpy, etc.).
+## System and SW used for this project: 
+* OS: Ubuntu 16.04
+* CPU: Intel Core i7
+* System memory: 32GB
+* GPU: Nvidia GTX1080
+* GPU memory: 8GB
+* CUDA version:
+* CuDNN version:
+* Framework: Kerasa with Tensorflow backend
+* Misc Python libraries (numpy, pandas, openCV etc.)
 
 ## Final Architecture:
   Decided to use Nvidia architecture as a base, and customizing for problem at hand and picking some of the good ideas from Comma. Here is a diagram of Nvidia's DAVE-2 architecture from the above paper.
