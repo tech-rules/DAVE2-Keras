@@ -24,6 +24,7 @@ Another choice considered was to use transfer learning (fine-tuning of final few
   The final model was based upon Nvidia's DAVE-2, with a few modifications borrowed from Comma.ai's steering model. Here is a diagram of Nvidia's DAVE-2 CNN from (1) above:
   
   ![](images/dave2.png?raw=true =100x)  
+  <img src="images/dave2.png?raw=true" width="48">
 
   Number and types of convolutional and fully connected layers were borrowed exactly as above (including the kernel sizes, strides and the in-line normalization layer). One drawback of this architecture is that it does not use any dropout layers. Dropout layers have proven very effective in reducing overfitting problem of deep neural networks. In my model, I have added dropout layers after each fully-connected layer. Another modification was to use ELU as activation function, instead of Relu, based upon Comma.ai's use of ELU. Finally, a tanh activation was used at the output neuron to keep the steering angle prediction within the range of -1 to +1.
   
