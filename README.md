@@ -21,7 +21,7 @@ Another choice considered was to use transfer learning (fine-tuning of final few
 * Misc. Python libraries (numpy, pandas, openCV etc.)
 
 ## Final Architecture:
-  The final model was based upon Nvidia's DAVE-2, with a few modifications borrowed from Comma.ai's steering model. Here is a diagram of Nvidia's DAVE-2 CNN:
+  The final model was based upon Nvidia's DAVE-2, with a few modifications borrowed from Comma.ai's steering model. Here is a diagram of Nvidia's DAVE-2 CNN from (1) above:
   
   ![](images/dave2.png?raw=true =200x)  
 
