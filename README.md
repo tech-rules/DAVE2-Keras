@@ -3,9 +3,8 @@
 The goal of this project was to implement an end-to-end neural network, for behavioral cloning of a simulated car driver. The input to the network are timestamped camera images (left, right , and center mounted).  The output of the network is a single floating point number, representing the steering angle of the car (other car controls e.g. throttle and brake were assumed constants). A Unity engine based driving simulator was used for training and testing the network. This simulator was provided by Udacity as part of the Self Driving Car nanodegree program. If you wish to try it out, you can download it from: [Download Linux Driving Simulator](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f0f7_simulator-linux/simulator-linux.zip)
 
 The simulator has two  different tracks. Track 1 was used for training and validation. The purpose of Track 2 is to make sure that the solution is generalized enough, and not overfitted to Track 1.
-<img src="image/simulator.png" style="float: left; width: 30%; margin-right: 1%; margin-bottom: 0.5em;">
-<img src="image/tracks.png" style="float: left; width: 30%; margin-right: 1%; margin-bottom: 0.5em;">
-<p style="clear: both;">
+![](images/simulator.png?raw=true)
+![](images/tracks.png?raw=true)
 
 ## Architecture Choices: 
 Regression problem. Previous published work of real world in Nvidia paper (link) and commai.ai research (link). Transfer learning + Fine-tuning using VGG-16 or Inception-v3 (much larger netowrks, meant for classification, less flexibility).
