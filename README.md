@@ -14,13 +14,6 @@ Two of the previous work on similar end-to-end deep-learning self driving car ar
 
 Another choice considered was to use transfer learning (fine-tuning of final few layers) with a pre-trained image classification CNN (e.g. VGG-16 or Inception-v3). The purpose of these CNNs are quite different (Imagenet classification challenge). These CNNs tend to have many more layers and an order of magnitude larger number of parameters than the choices (1) or (2) above which are designed to run real-time on resource constrained systems i.e. DrivePX and smart phones.
 
-## System and SW used for this project: 
-* Ubuntu 16.04, Intel Core i7-6800K, 32GB System RAM
-* Nvidia GTX1080 GPU with 8GB Graphics RAM
-* CUDA 8.0, CuDNN 5.1
-* Framework: Keras with Tensorflow backend
-* Misc. Python libraries (numpy, pandas, openCV etc.)
-
 ## Final Architecture:
   The final model was based upon Nvidia's DAVE-2, with a few modifications borrowed from Comma.ai's steering model. Here is a diagram of Nvidia's DAVE-2 CNN from (1) above:
   
@@ -172,3 +165,13 @@ Analysis of Track 1 video
 
 Track 2 video link (can it be embedded in readme.md ?)
 Analysis of Track 2 video
+
+## System and SW used for this project: 
+* Ubuntu 16.04, Intel Core i7-6800K, 32GB System RAM
+* Nvidia GTX1080 GPU with 8GB Graphics RAM
+* CUDA 8.0, CuDNN 5.1
+* Framework: Keras with Tensorflow backend
+* Misc. Python libraries (numpy, pandas, openCV etc.)
+
+## Final Thoughts:
+
