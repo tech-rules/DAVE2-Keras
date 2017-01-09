@@ -3,11 +3,13 @@
 The goal of this project was to implement an end-to-end neural network, for behavioral cloning of a simulated car driver. The input to the network are timestamped camera images (left, right , and center mounted).  The output of the network is a single floating point number, representing the steering angle of the car (other car controls e.g. throttle and brake were assumed constants). A Unity engine based driving simulator was used for training and testing the network. This simulator was provided by Udacity as part of the Self Driving Car nanodegree program. In case you want to try it out: [Link to download Linux Driving Simulator](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f0f7_simulator-linux/simulator-linux.zip)
 
 The simulator has two  different tracks. Track 1 was used for training and validation. The purpose of Track 2 is to make sure that the solution is generalized enough, and not overfitted to Track 1.
+
 ![](images/simulator.png?raw=true)
 
 ## Architecture Choices: 
 Two of the previous work on similar end-to-end deep-learning self driving car are:
-1. [Nvidia's DAVE2 system](https://arxiv.org/pdf/1604.07316v1.pdf)
+
+1. [Nvidia's DAVE-2 system](https://arxiv.org/pdf/1604.07316v1.pdf)
 2. [Comma.ai's steering angle model](https://github.com/commaai/research)
 Anther choice that I considered was to use transfer learning (fine-tuning of final few layers) with a pre-trained image classification CNN (e.g. VGG-16 or Inception-v3). The purpose of these CNNs are quite different (Imagenet classification challenge), and their parameter space is much larger than the choices (1) or (2) above.
 
