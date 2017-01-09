@@ -1,4 +1,3 @@
-# DAVE2-Keras
 ## Goal: 
 The goal of this project was to implement an end-to-end neural network, for behavioral cloning of a simulated car driver. The input to the network are timestamped camera images (left, right , and center mounted).  The output of the network is a single floating point number, representing the steering angle of the car (other car controls e.g. throttle and brake were assumed constants). A Unity engine based driving simulator was used for training and testing the network. This simulator was provided by Udacity as part of the Self Driving Car nanodegree program. In case you want to try it out: [Link to download Linux Driving Simulator](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f0f7_simulator-linux/simulator-linux.zip)
 
@@ -15,15 +14,11 @@ Two of the previous work on similar end-to-end deep-learning self driving car ar
 Anther choice that I considered was to use transfer learning (fine-tuning of final few layers) with a pre-trained image classification CNN (e.g. VGG-16 or Inception-v3). The purpose of these CNNs are quite different (Imagenet classification challenge), and their parameter space is much larger than the choices (1) or (2) above.
 
 ## System and SW used for this project: 
-* OS: Ubuntu 16.04
-* CPU: Intel Core i7
-* System memory: 32GB
-* GPU: Nvidia GTX1080
-* GPU memory: 8GB
-* CUDA version:
-* CuDNN version:
-* Framework: Kerasa with Tensorflow backend
-* Misc Python libraries (numpy, pandas, openCV etc.)
+* Ubuntu 16.04, Intel Core i7-6800K, 32GB System RAM
+* Nvidia GTX1080 GPU with 8GB Graphics RAM
+* CUDA 8.0, CuDNN 5.1
+* Framework: Keras with Tensorflow backend
+* Misc. Python libraries (numpy, pandas, openCV etc.)
 
 ## Final Architecture:
   Decided to use Nvidia architecture as a base, and customizing for problem at hand and picking some of the good ideas from Comma. Here is a diagram of Nvidia's DAVE-2 architecture from the above paper.
