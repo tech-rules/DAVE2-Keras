@@ -23,7 +23,7 @@ Another choice considered was to use transfer learning (fine-tuning of final few
 ## Final Architecture:
   The final model was based upon Nvidia's DAVE-2, with a few modifications borrowed from Comma.ai's steering model. Here is a diagram of Nvidia's DAVE-2 CNN from (1) above:
   
-  ![](images/dave2.png?raw=true =200x)  
+  ![](images/dave2.png?raw=true =100x)  
 
   Number and types of convolutional and fully connected layers were borrowed exactly as above (including the kernel sizes, strides and the in-line normalization layer). One drawback of this architecture is that it does not use any dropout layers. Dropout layers have proven very effective in reducing overfitting problem of deep neural networks. In my model, I have added dropout layers after each fully-connected layer. Another modification was to use ELU as activation function, instead of Relu, based upon Comma.ai's use of ELU. Finally, a tanh activation was used at the output neuron to keep the steering angle prediction within the range of -1 to +1.
   
@@ -125,11 +125,11 @@ ________________________________________________________________________________
 [Link to data flow graph of the model](images/model.png)
 
 ## Training Data Preparation:
-  Udacity provided training data. Expert driver. Explain what was in the data. csv file, images. center, left, right image. histogram of steering angle (insert picture) 
+  Udacity provided training data. Expert driver. Explain what was in the data. csv file, images. center, left, right image. histogram of steering angle
 
 ![](images/steering_hist.png?raw=true)  
   
-  Balanced left and right angles. But too many zeros. removed 80% zeros, in order to teach the NN more frequent and small sterring adjustments, similar to what we teach a new human driver. right and left camera images were used as a means to teach recovery and generate aditional data (similar to nvidia paper). CSV and pandas processing. resizing to remove top, bottom, fit to input layer of dave2.
+  Balanced left and right angles. But too many zeros. removed 80% zeros, in order to teach the NN more frequent and small sterring adjustments, similar to what we teach a new human driver. right and left camera images were used as a means to teach recovery and generate aditional data (similar to nvidia paper). CSV and pandas processing. cropping to remove top, bottom, resize to input layer of dave2. (show images pre and post processing)
   
   Decision to augment data for reducing overfitting and be able handle different kind of tracks. 
   Benefits of using generator for data augmentation. 
