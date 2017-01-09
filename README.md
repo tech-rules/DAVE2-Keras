@@ -1,6 +1,8 @@
 # DAVE2-Keras
 ## Goal: 
-problem statement from udacity. Track 1 and Track 2 generalization (sharper turns, uphill/downhill, more varying lighting conditions). Link to simulator (unity based).
+The goal of this project was to implement an end-to-end neural network, for behavioral cloning of a simulated car driver. The input to the network are timestamped camera images (left, right , and center mounted).  The output of the network is a single floating point number, representing the steering angle of the car (other car controls e.g. throttle and brake were assumed constants). A Unity engine based driving simulator was used for training and testing the network. This simulator was provided by Udacity as part of the Self Driving Car nanodegree program. If you wish to try it out, you can download it from: [Download Linux Driving Simulator](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/5831f0f7_simulator-linux/simulator-linux.zip)
+
+The simulator has two  different tracks. Track 1 was used for training and validation. The purpose of Track 2 is to make sure that the solution is generalized enough, and not overfitted to Track 1. (insert images side by side)
 
 ## Architecture Choices: 
 Regression problem. Previous published work of real world in Nvidia paper (link) and commai.ai research (link). Transfer learning + Fine-tuning using VGG-16 or Inception-v3 (much larger netowrks, meant for classification, less flexibility).
@@ -16,6 +18,47 @@ NVidia GTX1080 (8GB VRAM). Intel Core i7 (32GB DRAM). Ubuntu 16.04. CUDA version
   Optimizer choice. Learning Rate choice.
   Description of my layers. number of parameters. keras model.info().
   My diagram (tensorboard or draw.io)
+```python
+input_shape = (66, 200, 3)
+model = Sequential()
+# Input normalization layer
+model.add(Lambda(lambda x: x/127.5 - 1., input_shape=input_shape, name='lambda_norm'))
+
+# 5x5 Convolutional layers with stride of 2x2
+model.add(Convolution2D(24, 5, 5, subsample=(2, 2), border_mode="valid", name='conv1'))
+model.add(ELU(name='elu1'))
+model.add(Convolution2D(36, 5, 5, subsample=(2, 2), border_mode="valid", name='conv2'))
+model.add(ELU(name='elu2'))
+model.add(Convolution2D(48, 5, 5, subsample=(2, 2), border_mode="valid", name='conv3'))
+model.add(ELU(name='elu3'))
+
+# 3x3 Convolutional layers with stride of 1x1
+model.add(Convolution2D(64, 3, 3, subsample=(1, 1), border_mode="valid", name='conv4'))
+model.add(ELU(name='elu4'))
+model.add(Convolution2D(64, 3, 3, subsample=(1, 1), border_mode="valid", name='conv5'))
+model.add(ELU(name='elu5'))
+
+# Flatten before passing to Fully Connected layers
+model.add(Flatten())
+# Three fully connected layers
+model.add(Dense(100, name='fc1'))
+model.add(Dropout(.5, name='do1'))
+model.add(ELU(name='elu6'))
+model.add(Dense(50, name='fc2'))
+model.add(Dropout(.5, name='do2'))
+model.add(ELU(name='elu7'))
+model.add(Dense(10, name='fc3'))
+model.add(Dropout(.5, name='do3'))
+model.add(ELU(name='elu8'))
+
+# Output layer with tanh activation 
+model.add(Dense(1, activation='tanh', name='output'))
+
+adam = Adam(lr=1e-4, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0)
+model.compile(optimizer="adam", loss="mse")
+
+```
+
 ```
 Layer (type)                     Output Shape          Param #     Connected to                     
 ====================================================================================================
@@ -68,6 +111,7 @@ Trainable params: 252,219
 Non-trainable params: 0
 ____________________________________________________________________________________________________
 ```
+[A picture of the model](model.png)
 
 ## Training Data Preparation:
   Udacity provided training data. Explain what was in the data. csv file, images. center, left, right image. histogram of steering angle (insert picture) showed that center had too many zeros. removed 75% zeros, in order to teach the NN more frequent and small sterring adjustments, similar to what we teach a new human driver. right and left camera images were used as a means to teach recovery and generate aditional data (similar to nvidia paper). CSV and pandas processing. (insert new histogram)
@@ -84,23 +128,28 @@ ________________________________________________________________________________
   Udacity provided track 1 data as training data. Self generated data on track 2 as validation data.
   Actual running on tracks as test.
   Analysis of training trial and error process.
+    
 ```
-Epoch 1/8
-18404/18404 [==============================] - 28s - loss: 0.0550 - val_loss: 0.0230
-Epoch 2/8
-18404/18404 [==============================] - 27s - loss: 0.0446 - val_loss: 0.0381
-Epoch 3/8
-18404/18404 [==============================] - 27s - loss: 0.0397 - val_loss: 0.0830
-Epoch 4/8
-18404/18404 [==============================] - 27s - loss: 0.0394 - val_loss: 0.0812
-Epoch 5/8
-18404/18404 [==============================] - 27s - loss: 0.0364 - val_loss: 0.0446
-Epoch 6/8
-18404/18404 [==============================] - 27s - loss: 0.0332 - val_loss: 0.0460
-Epoch 7/8
-18404/18404 [==============================] - 27s - loss: 0.0321 - val_loss: 0.0412
-Epoch 8/8
-18404/18404 [==============================] - 27s - loss: 0.0312 - val_loss: 0.0628
+Epoch 1/10
+19802/19802 [==============================] - 30s - loss: 0.0516 - val_loss: 0.0233
+Epoch 2/10
+19802/19802 [==============================] - 29s - loss: 0.0421 - val_loss: 0.0691
+Epoch 3/10
+19802/19802 [==============================] - 29s - loss: 0.0372 - val_loss: 0.0324
+Epoch 4/10
+19802/19802 [==============================] - 29s - loss: 0.0346 - val_loss: 0.0584
+Epoch 5/10
+19802/19802 [==============================] - 29s - loss: 0.0322 - val_loss: 0.0477
+Epoch 6/10
+19802/19802 [==============================] - 29s - loss: 0.0316 - val_loss: 0.0708
+Epoch 7/10
+19802/19802 [==============================] - 29s - loss: 0.0284 - val_loss: 0.0961
+Epoch 8/10
+19802/19802 [==============================] - 29s - loss: 0.0278 - val_loss: 0.0679
+Epoch 9/10
+19802/19802 [==============================] - 29s - loss: 0.0273 - val_loss: 0.0705
+Epoch 10/10
+19802/19802 [==============================] - 29s - loss: 0.0273 - val_loss: 0.0616
 ```
 
 ## Test Results:
