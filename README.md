@@ -4,7 +4,7 @@ The goal of this project was to implement an end-to-end neural network, for beha
 The simulator has two  different tracks. Track 1 was used for training and validation. The purpose of Track 2 is to make sure that the solution is generalized enough, and not overfitted to Track 1.
 
 ![](images/tracks.png?raw=true)
-  <img src="images/simulator.png?raw=true" width="400">
+  <img src="images/simulator.png?raw=true" width="600">
 
 
 ## Architecture Choices: 
@@ -25,7 +25,7 @@ Another choice considered was to use transfer learning (fine-tuning of final few
 ## Final Architecture:
   The final model was based upon Nvidia's DAVE-2, with a few modifications borrowed from Comma.ai's steering model. Here is a diagram of Nvidia's DAVE-2 CNN from (1) above:
   
-  <img src="images/dave2.png?raw=true" width="400">
+  <img src="images/dave2.png?raw=true" width="350">
 
   Number and types of convolutional and fully connected layers were borrowed exactly as above (including the kernel sizes, strides and the in-line normalization layer). One drawback of this architecture is that it does not use any dropout layers. Dropout layers have proven very effective in reducing overfitting problem of deep neural networks. In my model, I have added dropout layers after each fully-connected layer. Another modification was to use ELU as activation function, instead of Relu, based upon Comma.ai's use of ELU. Finally, a tanh activation was used at the output neuron to keep the steering angle prediction within the range of -1 to +1.
   
