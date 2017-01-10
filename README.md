@@ -131,7 +131,7 @@ ________________________________________________________________________________
 ![](images/orig_2.png?raw=true)   
 ![](images/orig_3.png?raw=true)   
    
- As the first steps in preparing the images for feeding into the model, I remove the top and bottom 20-pixels from each image and resize the resulting image to 66x200x3 (from the original 160x320x3). The cropping is done in order to remove the top pixels above horizon, and bottom pixels containing car's bumper. The resizing is performed so that we can feed the image to the input layer of our model. As a visualization, the above images, after crop and resize appear as:
+ As the first steps in preparing the images for feeding into the model, I remove the top and bottom 20-pixels from each image and resize the resulting image to 66x200x3 (from the original 160x320x3). The cropping is done in order to remove the top pixels above horizon, and bottom pixels containing car's bumper. The resizing is performed so that we can feed the image to the input layer of our model. For the visualization, the above images, after cropping and resizing (ready to be fed to the model) appear as:
  
 ![](images/crop_1.png?raw=true)   
 ![](images/crop_2.png?raw=true)   
