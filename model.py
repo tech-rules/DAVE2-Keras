@@ -22,13 +22,12 @@ df = df[ind].reset_index()
 # Remove 'throttle', 'brake', 'speed' columns
 df = df.drop(['throttle', 'brake', 'speed'], 1)
 
-# Seprate data frames for center, right, left
+# Separate data frames for center, right, and left images
 df_c = df.drop(['right', 'left'], 1)
 df_r = df.drop(['center', 'left'], 1)
 df_l = df.drop(['center', 'right'], 1)
 
-# Reduce steering angle of 0s from the center data frame
-# Remove all zeros and then add back 50% of it
+# Remove 0-steering rows from center dataframe and then add back 20% of it
 ind = df_c['steering'] != 0
 df_c_zeros = df_c[~ind].reset_index(drop=True)
 df_c_zeros = df_c_zeros.sample(frac=0.2)
