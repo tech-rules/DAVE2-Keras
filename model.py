@@ -1,5 +1,3 @@
-import os
-import math
 import numpy as np
 import pandas as pd
 import cv2
@@ -7,12 +5,14 @@ import matplotlib.image as mpimg
 import json
 
 from keras.models import Sequential
-from keras.layers import Convolution2D, MaxPooling2D, Dense, Dropout, Activation, Flatten, Lambda, Input, ELU
-from keras.optimizers import SGD, Adam, RMSprop
+from keras.layers import Convolution2D, MaxPooling2D, Dense, Dropout
+from keras.layers import Activation, Flatten, Lambda, Input, ELU
+from keras.optimizers import Adam
 from keras.utils import np_utils
 from keras.preprocessing.image import ImageDataGenerator
 
-csv_file = 'data/driving_log.csv' # Training log file
+# Read and pre-process the logfile generated in training mode
+csv_file = 'data/driving_log.csv' # Training logfile
 df = pd.read_csv(csv_file, index_col = False)
 
 # Removing data with throttle below 0.2
@@ -34,7 +34,7 @@ df_c_zeros = df_c[~ind].reset_index(drop=True)
 df_c_zeros = df_c_zeros.sample(frac=0.2)
 df_c = df_c[ind].reset_index(drop=True)
 
-# Add/Remove fixed sterring offset from the left and right data frames
+# Add/Remove fixed steering offset from the left and right data frames
 CAMERA_OFFSET = 0.20
 df_r['steering'] = df_r['steering'].apply(lambda x: x - CAMERA_OFFSET)
 df_l['steering'] = df_l['steering'].apply(lambda x: x + CAMERA_OFFSET)
@@ -47,33 +47,53 @@ df_l.columns = ['index', 'image_path', 'steering']
 df = pd.concat([df_c, df_c_zeros, df_r, df_l], axis=0, ignore_index=True)
 df = df.drop('index', 1)
 
-# Split training and validation data
+# Split dataset into training and validation
 df_train = df.sample(frac=0.95)
 df_val = df.loc[~df.index.isin(df_train.index)]
 
+# Functions to read and preprocess images
 def readProcess(image_file):
+    """Function to read an image file and crop and resize it for input layer
+    
+    Args: 
+      image_file (str): Image filename (expected in 'data/' subdirectory)
+
+    Returns:
+      numpy array of size 66x200x3, for the image that was read from disk
+    """
     # Read file from disk
     image = mpimg.imread('data/' + image_file.strip())
     # Remove the top 20 and bottom 20 pixels of 160x320x3 images
     image = image[20:140, :, :]
-    # Resize image to 200x66 to match Nvidia input
+    # Resize the image to match input layer of the model
     resize = (200, 66)
     image = cv2.resize(image, resize, interpolation=cv2.INTER_AREA)
     return image
 
-def randBright(image):
-    rand_image = cv2.cvtColor(image,cv2.COLOR_RGB2HSV)
-    rand_bright = .25 + np.random.uniform()
+def randBright(image, br=0.25):
+    """Function to randomly change the brightness of an image
+    
+    Args: 
+      image (numpy array): RGB array of input image
+      br (float): V-channel will be scaled by a random between br to 1+br
+
+    Returns:
+      numpy array of brighness adjusted RGB image of same size as input
+    """
+    rand_image = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
+    rand_bright = br + np.random.uniform()
     rand_image[:,:,2] = rand_image[:,:,2]*rand_bright
-    rand_image = cv2.cvtColor(rand_image,cv2.COLOR_HSV2RGB)
+    rand_image = cv2.cvtColor(rand_image, cv2.COLOR_HSV2RGB)
     return rand_image
 
+# Convert training dataframe into images and labels arrays
 X_train = []
 for im in df_train.image_path:
     X_train.append(readProcess(im))
 X_train = np.asarray(X_train)
 y_train = np.array(df_train.steering, dtype=np.float32)
 
+# Convert validation dataframe into images and labels arrays
 X_val = []
 for im in df_val.image_path:
     X_val.append(readProcess(im))
@@ -83,6 +103,7 @@ y_val = np.array(df_val.steering, dtype=np.float32)
 # Training data generator with random shear and random brightness
 datagen = ImageDataGenerator(shear_range=0.1, preprocessing_function=randBright)
 
+# Start of MODEL Definition
 input_shape = (66, 200, 3)
 model = Sequential()
 # Input normalization layer
@@ -102,7 +123,7 @@ model.add(ELU(name='elu4'))
 model.add(Convolution2D(64, 3, 3, subsample=(1, 1), border_mode="valid", name='conv5'))
 model.add(ELU(name='elu5'))
 
-# Flatten before passing to Fully Connected layers
+# Flatten before passing to the fully connected layers
 model.add(Flatten())
 # Three fully connected layers
 model.add(Dense(100, name='fc1'))
@@ -121,10 +142,10 @@ model.add(Dense(1, activation='tanh', name='output'))
 adam = Adam(lr=1e-4, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0)
 model.compile(optimizer="adam", loss="mse")
 
+# Train and save the model
 BATCH_SIZE = 100
 NB_EPOCH = 9
 NB_SAMPLES = 2*len(X_train)
-#NB_SAMPLES = 50000
 model.fit_generator(datagen.flow(X_train, y_train, batch_size=BATCH_SIZE),
                     samples_per_epoch=NB_SAMPLES, nb_epoch=NB_EPOCH,
                     validation_data=(X_val, y_val))
