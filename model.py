@@ -38,7 +38,7 @@ CAMERA_OFFSET = 0.20
 df_r['steering'] = df_r['steering'].apply(lambda x: x - CAMERA_OFFSET)
 df_l['steering'] = df_l['steering'].apply(lambda x: x + CAMERA_OFFSET)
 
-# Rename columns to match and then concatenate all three dataframes
+# Rename columns to match column-names and then concatenate all three dataframes
 df_c.columns = ['index', 'image_path', 'steering']
 df_c_zeros.columns = ['index', 'image_path', 'steering']
 df_r.columns = ['index', 'image_path', 'steering']
