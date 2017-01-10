@@ -123,9 +123,15 @@ ________________________________________________________________________________
 
 ![](images/steering_hist.png?raw=true)  
   
-  As you can see in the above histogram, the steering angles in this data are very well balanced between right and left turns. However, there is a very high percentage of zero steering angle. Having a disproportionally high number of data corresponding to one class is not a good input to a neural network, as it can bias the neural network towards outputting that value. Also, in real life, when we teach someone new about driving, we teach them to do small and frequent steering corrections. These facts lead me to reduce the number of zero data by 80% (number decided by trail and error). i.e. only 20% of the zero-steering data was retained for actual training.
+  As you can see in the above histogram, the steering angles in this data are very well balanced between right and left turns. However, there is a very high percentage of zero steering angle. Having a disproportionally high number of data corresponding to one class is not a good input to a neural network, as it can bias the neural network towards outputting that value. Also, in real life, when we teach someone new about driving, we teach them to do small and frequent steering corrections. These facts lead me to reduce the number of zero-steering data by 80%. i.e. only 20% of the zero-steering data was retained for actual training.
   
-   right and left camera images were used as a means to teach recovery and generate aditional data (similar to nvidia paper). cropping to remove top, bottom, resize to input layer of dave2. (show images pre and post processing)
+   NVvidia's DAVE-2 paper (Architecture choice #1 above) describes how to use right and left camera images to our advantage. The testing phase uses only center camera images i.e. input to the model is a single image at a time. Instead of throwing away the left and right images, we can use them as additional data for our training, after applying a fixed camera offset to the steering values. This gives us the first step towards data augmentation. Additionally, since the right and left camera see a more "extreme" turning conditions than just the center images, they are more helpful in "teaching" the neural network how to recover from extreme conditions, and help us towards a generalized solution during training. Below are some sample images from the three cameras:
+   
+![](images/orig_1.png?raw=true)   
+![](images/orig_2.png?raw=true)   
+![](images/orig_3.png?raw=true)   
+   
+ cropping to remove top, bottom, resize to input layer of dave2. (show images pre and post processing)
   
   Decision to augment data for reducing overfitting and be able handle different kind of tracks. 
   Benefits of using generator for data augmentation. 
