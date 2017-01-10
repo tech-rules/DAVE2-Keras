@@ -119,11 +119,13 @@ ________________________________________________________________________________
 [Link to data flow graph of the model](images/model.png)
 
 ## Training Data Preparation:
-  Udacity provided training data. Expert driver. Explain what was in the data. csv file, images. center, left, right image. histogram of steering angle
+  Training data captured while driving (by an expert driver;) on Track-1 was provided by Udacity. The data contained timestamped jpg images (160x320x3) from left, right, and center cameras alongwith a CSV logfile. The rows of the CSV logfile tied together the name and path of the image files, sterring angle, throttle, speed and brake values at every timestamp. Here is the histogram of the steering angles in this data.
 
 ![](images/steering_hist.png?raw=true)  
   
-  Balanced left and right angles. But too many zeros. removed 80% zeros, in order to teach the NN more frequent and small sterring adjustments, similar to what we teach a new human driver. right and left camera images were used as a means to teach recovery and generate aditional data (similar to nvidia paper). CSV and pandas processing. cropping to remove top, bottom, resize to input layer of dave2. (show images pre and post processing)
+  As you can see in the above histogram, the steering angles in this data are very well balanced between right and left turns. However, there is a very high percentage of zero steering angle. Having a disproportionally high number of data corresponding to one class is not a good input to a neural network, as it can bias the neural network towards outputting that value. Also, in real life, when we teach someone new about driving, we teach them to do small and frequent steering corrections. These facts lead me to reduce the number of zero data by 80% (number decided by trail and error). i.e. only 20% of the zero-steering data was retained for actual training.
+  
+   right and left camera images were used as a means to teach recovery and generate aditional data (similar to nvidia paper). cropping to remove top, bottom, resize to input layer of dave2. (show images pre and post processing)
   
   Decision to augment data for reducing overfitting and be able handle different kind of tracks. 
   Benefits of using generator for data augmentation. 
