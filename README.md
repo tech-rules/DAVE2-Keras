@@ -143,6 +143,10 @@ ________________________________________________________________________________
   show function call to image generator and fit_generator.
   Added a random brightness function on top of random shear and zoom functions available in keras generator
   
+![](images/augm_1.png?raw=true)   
+![](images/augm_2.png?raw=true)   
+![](images/augm_3.png?raw=true) 
+  
 ## Training/Validation/Testing:  
   Batch size experimentation. (like a hyperparameter)
   Number of Epoch experimentation
