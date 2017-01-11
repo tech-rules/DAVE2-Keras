@@ -137,7 +137,7 @@ ________________________________________________________________________________
 ![](images/crop_2.png?raw=true)   
 ![](images/crop_3.png?raw=true) 
   
-  A big concern in this project was to avoid overfitting and be able to generalize for different tracks. Track-1 did not have much variation in lighting conditions and the track was very flat (no uphill, downhill, banking on curves etc.). In order to include such variation in training data, I have used data augmentation using Keras [ImageDataGenerator()](https://keras.io/preprocessing/image/).
+  A big concern in this project was to avoid overfitting and be able to generalize for different tracks. Track-1 did not have much variation in lighting conditions and the track was very flat (no uphill, downhill, banking on curves etc.). In order to include such variations in training data, I have used data augmentation using Keras [ImageDataGenerator()](https://keras.io/preprocessing/image/).
   
   For efficient implementation of data augmentation, Keras has a model training method called fit_generator() that I used. It can take a python generator, such as ImageDataGenerator(), generating bacthes of augmented training data on-the-fly. The generator is run in parallel to the model and you can do real-time data augmentation on images on CPU in parallel to training your model on GPU.
   
