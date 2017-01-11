@@ -174,8 +174,10 @@ Epoch 9/9
 ## Test Results:
 
 Drive.py changes. norm. 0.2 vs 0.3. speed based throttle.
-[Track 1 youtube video link](https://youtu.be/yD_uHBQGC2k)
-[Track 2 youtube video link](https://youtu.be/MHwxlSUuqGE)
+
+[Track-1 youtube video link](https://youtu.be/yD_uHBQGC2k)
+
+[Track-2 youtube video link](https://youtu.be/MHwxlSUuqGE)
 
 ## System and SW used: 
 * Ubuntu 16.04, Intel Core i7-6800K, 32GB System RAM
