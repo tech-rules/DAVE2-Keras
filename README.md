@@ -131,7 +131,7 @@ ________________________________________________________________________________
 ![](images/orig_2.png?raw=true)   
 ![](images/orig_3.png?raw=true)   
    
- As the first steps in preparing the images for feeding into the model, I remove the top and bottom 20-pixels from each image and resize the resulting image to 66x200x3 (from the original 160x320x3). The cropping is done in order to remove the top pixels above horizon, and bottom pixels containing car's bumper. The resizing is performed to match the size of the input layer of our model. For the visualization, the above images, after cropping and resizing (ready to be fed to the model) appear as:
+ As the first steps in preparing the images for feeding into the model, I remove the top and bottom 20-pixels from each image and resize the resulting image to 66x200x3 (from the original 160x320x3). The cropping is done in order to remove the top pixels above horizon, and bottom pixels containing car's bumper. The resizing is performed to match the size of the input layer of our model. For the visualization, the above images, after cropping and resizing appear as:
  
 ![](images/crop_1.png?raw=true)   
 ![](images/crop_2.png?raw=true)   
@@ -139,7 +139,7 @@ ________________________________________________________________________________
   
   A big concern in this project was to avoid overfitting and be able to generalize for different tracks. Track-1 did not have much variation in lighting conditions and the track was very flat (no uphill, downhill, banking on curves etc.). In order to include such variation in training data, I have used data augmentation using Keras [ImageDataGenerator()](https://keras.io/preprocessing/image/).
   
-  For efficient implementation of data augmentation, Keras has a model training method called fit_generator() that I used. It can take a python generator, such as ImageDataGenerator(), generating bacthes of augmented training data. The generator is run in parallel to the model and you can do real-time data augmentation on images on CPU in parallel to training your model on GPU.
+  For efficient implementation of data augmentation, Keras has a model training method called fit_generator() that I used. It can take a python generator, such as ImageDataGenerator(), generating bacthes of augmented training data on-the-fly. The generator is run in parallel to the model and you can do real-time data augmentation on images on CPU in parallel to training your model on GPU.
   
   Keras' ImageDataGenerator() provides many built-in image transformation options, but it did not have a brightness adjustment option. Fortunately it provides hook for your own custom image transformation preprocessor. I added a random brightness change function as the preprocessor to the ImageDataGenerator(). In addition to the random brightness change, I used random shear (similar to openCV warpAffine transform) option that was built-in, for data augmentataion. Example images after applying these two augmentation techniques:
   
@@ -147,12 +147,8 @@ ________________________________________________________________________________
 ![](images/augm_2.png?raw=true)   
 ![](images/augm_3.png?raw=true) 
   
-## Training/Validation/Testing:  
-  Batch size experimentation. (like a hyperparameter)
-  Number of Epoch experimentation
-  Udacity provided track 1 data as training data. Self generated data on track 2 as validation data.
-  Actual running on tracks as test.
-  Analysis of training trial and error process.
+## Training, Validation and Testing:  
+  The original data (after preprocessing, but before augmentation) was split between training dataset and validation dataset. This project was peculiar in the sense that validation loss was not a very good indicator of performance on the tracks. The losses were computed based upon still images from the dataset. In practice, there are many "right" answers for each image, and there is a time-series dependance where future steering values can correct for any "apparently" wrong decision on the current image. So, I kept the validation fraction to only 5% of the dataset, just to give me a sense of number of epochs to run. Any further increase in the validation fraction eats into the avaialble training data and started to hurt the performance on the tracks. In a sense, running on Track-1 became the main validation criterion and running on Track-2 became the test criterion. Number of epochs were kept at 9, because the validation loss started to increase substantially after that. Batch size was chosen to be 100, since it gave a smoother driving when compared to lower batch sizes of 32 or 64. Here is the output from Keras fit_generator while training:
     
 ```
 Epoch 1/9
