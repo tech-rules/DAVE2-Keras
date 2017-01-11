@@ -12,7 +12,7 @@ Two of the previous work on similar end-to-end deep-learning self driving car ar
 1. [Nvidia's DAVE-2 system](https://arxiv.org/pdf/1604.07316v1.pdf)
 2. [Comma.ai's steering angle model](https://github.com/commaai/research)
 
-Another choice considered was to use transfer learning (fine-tuning of final few layers) with a pre-trained image classification CNN (e.g. VGG-16 or Inception-v3). The purpose of these CNNs are quite different (Imagenet classification challenge). These CNNs tend to have many more layers and an order of magnitude larger number of parameters than the choices (1) or (2) above which are designed to run real-time on resource constrained systems i.e. DrivePX and smart phones.
+Another choice considered was to use transfer learning (changing and fine-tuning of final few layers) with a pre-trained image classification CNN (e.g. VGG-16 or Inception-v3). The purpose of these CNNs are quite different (Imagenet classification challenge). These CNNs tend to have many more layers and an order of magnitude larger number of parameters than the choices (1) or (2) above which are designed to run real-time on resource constrained systems i.e. DrivePX and smart phones.
 
 ## Final Architecture:
   The final model was based upon Nvidia's DAVE-2, with a few modifications borrowed from Comma.ai's steering model. Here is a diagram of Nvidia's DAVE-2 CNN from (1) above:
@@ -174,7 +174,7 @@ Epoch 9/9
 ```
 
 ## Test Results:
-In order to run the tests with simulator in autonomous mode, Udacity had provided a boilerplate script (drive.py). It needed to be modified to include the preprocessing of cropping and resizing of images. Also, we were expected to customize the throttle setting for Track-1 and Track-2. I used the throttle setting of 0.2 for Track-1 and 0.3 for Track-2, with a slight adjustment to slow down in proportion to the steering angle. Links to the test results are given below:
+In order to run the tests with simulator in autonomous mode, Udacity had provided a boilerplate script(drive.py) to establish a socket connection with the simulator and use our model as the driving agent in autonomous mode. It needed to be modified to include the preprocessing of cropping and resizing of images. Also, we were expected to customize the throttle setting for Track-1 and Track-2. I used the throttle setting of 0.2 for Track-1 and 0.3 for Track-2, with a slight adjustment to slow down in proportion to the steering angle. Once you have the simulator, model (json and hd5, and drive.py in the same directory, you can start the agent with the command 'python drive.py model.json'. Also, links to the test results with my final model are given below:
 
 [Track-1 autonomous mode youtube video](https://youtu.be/yD_uHBQGC2k)
 
