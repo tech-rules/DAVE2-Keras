@@ -176,16 +176,16 @@ Epoch 9/9
 ## Test Results:
 In order to run the tests with simulator in autonomous mode, Udacity had provided a boilerplate script (drive.py) to establish a socket connection with the simulator and use our model as the driving agent in autonomous mode. It was modified to include the preprocessing of cropping and resizing of images coming from the simulator. Also, the throttle settings were customized for Track-1 and Track-2. I used the throttle setting of 0.2 for Track-1 and 0.3 for Track-2, with a slight adjustment to slow down in proportion to the steering angle. Once you have the simulator, model (json and hd5, and drive.py in the same directory, you can start the agent with the command `python drive.py model.json`. Links to the test results with my final model are given below:
 
-[Track-1 autonomous mode youtube video](https://youtu.be/yD_uHBQGC2k)
-
-[Track-2 autonomous mode youtube video](https://youtu.be/MHwxlSUuqGE)
+1. [Track-1 autonomous mode youtube video](https://youtu.be/yD_uHBQGC2k)
+2. [Track-2 autonomous mode youtube video](https://youtu.be/MHwxlSUuqGE)
 
 ## System and SW used: 
 * Ubuntu 16.04, Intel Core i7-6800K, 32GB System RAM
 * Nvidia GTX1080 GPU with 8GB Graphics RAM
 * CUDA 8.0, CuDNN 5.1
 * Framework: Keras with Tensorflow backend
-* Misc. Python libraries (numpy, pandas, openCV etc.)
+* Misc. Python libraries (numpy, pandas, openCV, matplotlib etc.)
 
 ## Final Thoughts:
+This was a fun little project. I learned a lot during this project, both in terms of DL concepts as well as the tools and flows avaialble to us. Deploying a DL networks for a specific problem may feel like trial and error at times, but it is essentially a series of methodical and guided experiments requiring patient logging and analysis of intermediate results. It is more in line with the scientific method than traditional software engineering. 
 
