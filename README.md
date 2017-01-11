@@ -172,8 +172,7 @@ Epoch 9/9
 ```
 
 ## Test Results:
-
-Drive.py changes. norm. 0.2 vs 0.3. speed based throttle.
+In order to run the tests with simulator in autonomous mode, Udacity had provided a boilerplate script (drive.py). It needed to be modified to include the preprocessing of cropping and resizing of images. Also, we were expected to customize the throttle setting for Track-1 and Track-2. I used the throttle setting of 0.2 for Track-1 and 0.3 for Track-2, with a slight adjustment to slow down in proportion to the steering angle. The link to the test result videos are given below:
 
 [Track-1 youtube video link](https://youtu.be/yD_uHBQGC2k)
 
