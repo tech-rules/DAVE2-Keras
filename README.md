@@ -173,6 +173,7 @@ Epoch 9/9
 
 ## Test Results:
 
+Drive.py changes. norm. 0.2 vs 0.3. speed based throttle.
 Track 1 video link (can it be embedded in readme.md ?)
 Track 2 video link (can it be embedded in readme.md ?)
 
