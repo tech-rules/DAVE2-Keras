@@ -137,13 +137,11 @@ ________________________________________________________________________________
 ![](images/crop_2.png?raw=true)   
 ![](images/crop_3.png?raw=true) 
   
-  A big concern in this project was to avoid overfitting and be able to generalize for different tracks. Track-1 did not have much variation in lighting conditions and the track was very flat (no uphill, downhill, banking on curves etc.). In order to include such variation in training data, I have used data augmentation using Keras [ImageDataGenerator](https://keras.io/preprocessing/image/).
+  A big concern in this project was to avoid overfitting and be able to generalize for different tracks. Track-1 did not have much variation in lighting conditions and the track was very flat (no uphill, downhill, banking on curves etc.). In order to include such variation in training data, I have used data augmentation using Keras [ImageDataGenerator()](https://keras.io/preprocessing/image/).
   
-  Decision to augment data for reducing overfitting and be able handle different kind of tracks. 
-  Benefits of using generator for data augmentation. 
-  Keras image preprocessing generator fits the bill. in-built and flexibility to extend via pre-processing function.
-  show function call to image generator and fit_generator.
-  Added a random brightness function on top of random shear and zoom functions available in keras generator
+  For efficient implementation of data augmentation, Keras has a model training method called fit_generator() that I used. It can take a python generator, such as ImageDataGenerator(), generating bacthes of augmented training data. The generator is run in parallel to the model and you can do real-time data augmentation on images on CPU in parallel to training your model on GPU.
+  
+  Keras' ImageDataGenerator() provides many built-in image transformation options, but it did not have a brightness adjustment option. Fortunately it provides hook for your own custom image transformation preprocessor. I added a random brightness change function as the preprocessor to the ImageDataGenerator(). In addition to the random brightness change, I used random shear (similar to openCV warpAffine transform) option that was built-in, for data augmentataion. Example images after applying these two augmentation techniques:
   
 ![](images/augm_1.png?raw=true)   
 ![](images/augm_2.png?raw=true)   
