@@ -148,7 +148,9 @@ ________________________________________________________________________________
 ![](images/augm_3.png?raw=true) 
   
 ## Training and Validation:  
-  The original data (after preprocessing, but before augmentation) was split between training dataset and validation dataset. This project was peculiar in the sense that validation loss was not a very good indicator of performance on the tracks. The losses were computed based upon still images from the dataset. In practice, there are many "right" answers for each image, and there is a time-series dependance where future steering values can correct for any "apparently" wrong decision on the current image. So, I kept the validation fraction to only 5% of the dataset, just to give me a sense of number of epochs to run. Any further increase in the validation fraction eats into the avaialble training data and started to hurt the performance on the tracks. In a sense, running on Track-1 became the main validation criterion and running on Track-2 became the test criterion. Number of epochs were kept at 9, because the validation loss started to increase substantially after that. Batch size was chosen to be 100, since it gave a smoother driving when compared to lower batch sizes of 32 or 64. Number of augmented samples in each epoch were chosen to be 2x training data size. Here is the output from Keras fit_generator while training:
+  The original data (after preprocessing, but before augmentation) was split between training dataset and validation dataset. This project was peculiar in the sense that validation loss was not a very good indicator of performance on the tracks. The losses were computed based upon still images from the dataset. In practice, there are many "right" answers for each image, and there is a time-series dependance where future steering values can correct for any "apparently" wrong decision on the current image. So, I kept the validation fraction to only 5% of the dataset, just to give me a sense of number of epochs to run. Any further increase in the validation fraction eats into the avaialble training data and started to hurt the performance on the tracks. 
+  
+  In a sense, succesfully running on Track-1 became the main validation criterion and running on completing Track-2 became the test criterion for this project. Number of epochs were kept at 9, because the validation loss started to increase substantially after that. Batch size was chosen to be 100, since it gave a smoother driving when compared to lower batch sizes of 32 or 64. Number of augmented samples in each epoch were chosen to be 2x training data size. Here is the output from Keras fit_generator while training:
     
 ```
 Epoch 1/9
@@ -174,9 +176,9 @@ Epoch 9/9
 ## Test Results:
 In order to run the tests with simulator in autonomous mode, Udacity had provided a boilerplate script (drive.py). It needed to be modified to include the preprocessing of cropping and resizing of images. Also, we were expected to customize the throttle setting for Track-1 and Track-2. I used the throttle setting of 0.2 for Track-1 and 0.3 for Track-2, with a slight adjustment to slow down in proportion to the steering angle. Links to the test results are given below:
 
-[Track-1 youtube video](https://youtu.be/yD_uHBQGC2k)
+[Track-1 autonomous mode youtube video](https://youtu.be/yD_uHBQGC2k)
 
-[Track-2 youtube video](https://youtu.be/MHwxlSUuqGE)
+[Track-2 autonomous mode youtube video](https://youtu.be/MHwxlSUuqGE)
 
 ## System and SW used: 
 * Ubuntu 16.04, Intel Core i7-6800K, 32GB System RAM
