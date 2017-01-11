@@ -137,6 +137,8 @@ ________________________________________________________________________________
 ![](images/crop_2.png?raw=true)   
 ![](images/crop_3.png?raw=true) 
   
+  A big concern in this project was to avoid overfitting and be able to generalize for different tracks. Track-1 did not have much variation in lighting conditions and the track was very flat (no uphill, downhill, banking on curves etc.). In order to include such variation in training data, I have used data augmentation using Keras [ImageDataGenerator](https://keras.io/preprocessing/image/).
+  
   Decision to augment data for reducing overfitting and be able handle different kind of tracks. 
   Benefits of using generator for data augmentation. 
   Keras image preprocessing generator fits the bill. in-built and flexibility to extend via pre-processing function.
@@ -182,7 +184,7 @@ Analysis of Track 1 video
 Track 2 video link (can it be embedded in readme.md ?)
 Analysis of Track 2 video
 
-## System and SW used for this project: 
+## System and SW used: 
 * Ubuntu 16.04, Intel Core i7-6800K, 32GB System RAM
 * Nvidia GTX1080 GPU with 8GB Graphics RAM
 * CUDA 8.0, CuDNN 5.1
