@@ -193,3 +193,4 @@ At the same time, it was very rewarding to see the results. Especially, observin
 
 In terms of possible enhancements, we could include some form of reinforcement learning while training. As discussed earlier, there are multiple right answers for each frame, and we can reward e.g. adherence to the center of the lane or a more "smooth" ride over time. Also, we could extend this end-to-end DL approach to add more sensor inputs (e.g. lidar, radar etc.) and more control outputs (e.g. throttle, brake etc.).
 
+Finally, extending the solution to real world, or even a more realistic simulation environment e.g. [openai universe GTA-V](https://openai.com/blog/GTA-V-plus-Universe/) would be cool.
