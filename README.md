@@ -187,5 +187,9 @@ In order to run the tests with simulator in autonomous mode, Udacity had provide
 * Misc. Python libraries (numpy, pandas, openCV, matplotlib etc.)
 
 ## Final Thoughts:
-This was a fun little project. I learned a lot during this project, both in terms of DL concepts as well as the tools and flows avaialble to us. Deploying a DL networks for a specific problem may feel like trial and error at times, but it is essentially a series of methodical and guided experiments requiring patient logging and analysis of intermediate results. It is more in line with the scientific method than traditional software engineering. 
+This was a fun little project. I learned a lot during this project, both in terms of DL concepts as well as the tools and flows avaialble to us. Training and deploying a DL networks for a specific problem may feel like trial and error at times, but it is essentially a series of methodical and guided experiments requiring patient logging and analysis of intermediate results. It is more in line with the scientific method than traditional software engineering. e.g. in this project, apart from multiple hyper-parameters of the CNN, we had multiple knobs in data gathering, data preparation, and data augmentation as well and the permutations of these choices can quickly become overwhelming. 
+
+At the same time, it was very rewarding to see the results. Especially, observing the generalization from Track-1 to Track-2 was almost magical. This was constructed as a toy problem, but similar approaches are showing promising results in the real world. 
+
+In terms of possible enhancements, we could include some form of reinforcement learning while training. As discussed earlier, there are multiple right answers for each frame, and we can reward e.g. adherence to the center of the lane or a more "smooth" ride over time. Also, we could extend this end-to-end DL approach to add more sensor inputs (e.g. lidar, radar etc.) and more control outputs (e.g. throttle, brake etc.).
 
