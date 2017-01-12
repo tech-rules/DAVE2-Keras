@@ -173,7 +173,7 @@ Epoch 9/9
 35466/35466 [==============================] - 53s - loss: 0.0195 - val_loss: 0.0239
 ```
 
-## Test Results:
+## Test Result:
 In order to run the tests with simulator in autonomous mode, Udacity had provided a boilerplate script (drive.py) to establish a socket connection with the simulator and use our model as the driving agent in autonomous mode. It was modified to include the preprocessing of cropping and resizing of images coming from the simulator. Also, the throttle settings were customized for Track-1 and Track-2. I used the throttle setting of 0.2 for Track-1 and 0.3 for Track-2, with a slight adjustment to slow down in proportion to the steering angle. Once you have the simulator, model (json and hd5, and drive.py in the same directory, you can start the agent with the command `python drive.py model.json`. Links to the test results with my final model are given below:
 
 1. [Track-1 autonomous mode youtube video](https://youtu.be/yD_uHBQGC2k)
